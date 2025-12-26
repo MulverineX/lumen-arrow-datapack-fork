@@ -1,6 +1,7 @@
-node_modules
-.vscode
+.compress
 .env
 .sandstone
-resources/cache
+.vscode
 example/
+node_modules
+resources/cache

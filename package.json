@@ -1,18 +1,21 @@
 {
-  "name": "datapack-lumen-arrow",
-  "version": "0.0.1",
+  "name": "lumen-arrow",
+  "version": "0.1.0",
   "description": "A pack created with Sandstone",
   "type": "module",
   "scripts": {
     "clean": "rm -rf .sandstone",
-    "watch": "sand watch",
-    "build": "sand build"
+    "compress": "scripts/compress.bash",
+    "build": "sand build",
+    "postbuild": "cp assets/pack.png .sandstone/output/datapack/pack.png",
+    "watch": "sand watch"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.8.6",
+    "dotenv": "^17.2.3",
     "lodash": "^4.17.21",
     "sandstone": "1.0.0-beta.0",
     "sandstone-build": "^1.1.0",

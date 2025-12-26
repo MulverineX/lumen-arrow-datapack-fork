@@ -5,6 +5,12 @@ import type {
     ResourcePackConfig,
     SandstoneConfig,
 } from "sandstone";
+import { config } from "dotenv";
+
+// I'd prefer to use `node --env-file=.env` but it cannot work that way
+config();
+
+console.log(process.env.DATAPACK_CLIENT_PATH);
 
 export default {
     name: "lumen_arrow",
@@ -12,16 +18,16 @@ export default {
         datapack: {
             description: [
                 "A ",
-                { text: "Sandstone", color: "gold" },
-                " datapack.",
+                { text: "Lumen Arrows", color: "gold" },
+                " Minecraft datapack.",
             ],
             packFormat: 94.1,
         } as DatapackConfig,
         resourcepack: {
             description: [
                 "A ",
-                { text: "Sandstone", color: "gold" },
-                " resource pack.",
+                { text: "Lumen Arrows", color: "gold" },
+                " Minecraft resource pack.",
             ],
             packFormat: 94.1,
         } as ResourcePackConfig,
@@ -47,10 +53,12 @@ const renamedPaths = [
     "item",
     "recipe",
 ];
+
 const renamePattern = new RegExp(
     String.raw`/(${renamedPaths.join("|")})s/`,
     "g"
 );
+
 const repoDirectory = process.cwd();
 
 async function fixLegacyPathNames(
