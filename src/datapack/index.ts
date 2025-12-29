@@ -15,7 +15,7 @@ const playersBeyond4Blocks = PLAYERS.beyondDistance(4);
 
 createTorchArrow({
     label: LumenArrowName.TORCH,
-    color: 0xffff00,
+    color: 0xffd604,
     torchId: "torch",
     createParticle: () => {
         particle(
@@ -32,7 +32,7 @@ createTorchArrow({
 
 createTorchArrow({
     label: LumenArrowName.SOUL,
-    color: 0x0000ff,
+    color: 0x61f4f8,
     torchId: "soul_torch",
     createParticle: () => {
         particle(
@@ -49,7 +49,7 @@ createTorchArrow({
 
 createTorchArrow({
     label: LumenArrowName.COPPER,
-    color: 0x00ff00,
+    color: 0x9aeb9a,
     torchId: "copper_torch",
     createParticle: () => {
         particle(
@@ -67,7 +67,7 @@ createTorchArrow({
 
 createTorchArrow({
     label: LumenArrowName.REDSTONE,
-    color: 0xff0000,
+    color: 0xf76d6d,
     torchId: "redstone_torch",
     createParticle: () => {
         particle(

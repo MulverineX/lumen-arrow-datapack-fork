@@ -7,14 +7,13 @@ settings:
 importers:
 
   .:
-    dependencies:
-      dotenv:
-        specifier: ^17.2.3
-        version: 17.2.3
     devDependencies:
       '@types/node':
         specifier: ^20.8.6
         version: 20.19.27
+      dotenv:
+        specifier: ^17.2.3
+        version: 17.2.3
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
