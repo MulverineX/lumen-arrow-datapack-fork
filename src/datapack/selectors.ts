@@ -1,21 +1,24 @@
 import { Selector } from "sandstone";
 import { namespaceId } from "./shared.ts";
+import { IGNORE_ARROW } from "./tags.ts";
 
 const custom_name = namespaceId({ id: "custom_name" });
 
-export const PLAYERS = {
-    beyondDistance: (blocks: number) =>
-        Selector("@a", { distance: `${blocks}..` }),
-};
+export function createPlayerBeyondDistanceSelector(blocks: number) {
+    return Selector("@a", { distance: `${blocks}..` });
+}
 
-export function createLumenSelectors(name: string, tag: string) {
+export function createLumenSelectors(label: string, arrowTag: string) {
     return {
-        all: Selector("@e", { tag }),
-        flying: Selector("@e", { tag, nbt: { inGround: false } }),
-        grounded: Selector("@e", { tag, nbt: { inGround: true } }),
+        all: Selector("@e", { tag: arrowTag }),
+        flying: Selector("@e", { tag: arrowTag, nbt: { inGround: false } }),
+        groundedNotIgnored: Selector("@e", {
+            tag: [arrowTag, `!${IGNORE_ARROW}`],
+            nbt: { inGround: true },
+        }),
         untagged: Selector("@e", {
-            nbt: { item: { components: { [custom_name]: { text: name } } } },
-            tag: `!${tag}`,
+            tag: `!${arrowTag}`,
+            nbt: { item: { components: { [custom_name]: { text: label } } } },
         }),
     };
 }

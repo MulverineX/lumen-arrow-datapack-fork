@@ -1,6 +1,6 @@
 {
   "name": "lumen-arrow",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A pack created with Sandstone",
   "type": "module",
   "scripts": {

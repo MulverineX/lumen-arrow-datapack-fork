@@ -10,8 +10,6 @@ import { config } from "dotenv";
 // I'd prefer to use `node --env-file=.env` but it cannot work that way
 config();
 
-console.log(process.env.DATAPACK_CLIENT_PATH);
-
 export default {
     name: "lumen_arrow",
     packs: {
@@ -33,7 +31,13 @@ export default {
         } as ResourcePackConfig,
     },
     onConflict: {
-        default: "warn",
+        // Todo: When you do an execute inside a function,
+        //  it creates a "execute_as" function but never calls said function.
+        //  If you run 2 executes within the same function,
+        //  it warns that it is trying to create multiple functions with the same name.
+        //  Since it is never running this extra function I think it is safe to ignore.
+        //  Maybe this is an incomplete feature of beta Sandstone?
+        default: "ignore",
     },
     namespace: "lumen_arrow",
     packUid: "pboxcTun",

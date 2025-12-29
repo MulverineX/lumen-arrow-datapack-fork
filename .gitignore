@@ -2,6 +2,5 @@
 .env
 .sandstone
 .vscode
-example/
 node_modules
 resources/cache

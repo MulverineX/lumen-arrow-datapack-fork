@@ -1,10 +1,3 @@
-export enum LumenArrowName {
-    TORCH = "Torch Arrow",
-    SOUL = "Soul Torch Arrow",
-    COPPER = "Copper Torch Arrow",
-    REDSTONE = "Redstone Torch Arrow",
-}
-
 export function namespaceId(options: { namespace?: string; id: string }) {
     const { namespace = "minecraft", id } = options;
     return `"${namespace}:${id}"`;
