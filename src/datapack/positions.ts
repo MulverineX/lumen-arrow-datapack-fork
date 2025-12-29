@@ -1,5 +1,7 @@
-export const HERE = ["~", "~", "~"] as [string, string, string];
-export const SLIGHTLY_NORTH = ["~", "~", "~0.1"] as [string, string, string];
-export const SLIGHTLY_SOUTH = ["~", "~", "~-0.1"] as [string, string, string];
-export const SLIGHTLY_WEST = ["~0.1", "~", "~"] as [string, string, string];
-export const SLIGHTLY_EAST = ["~-0.1", "~", "~"] as [string, string, string];
+import { relative } from "sandstone/variables/Coordinates";
+
+export const HERE = relative();
+export const SLIGHTLY_NORTH =  relative(0, 0, .1);
+export const SLIGHTLY_SOUTH = relative(0, 0, -.1);
+export const SLIGHTLY_WEST = relative(.1, 0, 0);
+export const SLIGHTLY_EAST = relative(-.1, 0, 0);

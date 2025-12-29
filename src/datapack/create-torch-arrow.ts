@@ -13,6 +13,8 @@ import { buildLumenArrowDefaults } from "./shared.ts";
 import { BLOCK_TAGS } from "./tags.ts";
 import * as Positions from "./positions.ts";
 
+type FaceDirection = "north" | "south" | "east" | "west";
+
 const ignoreArrowTag = "ignore_lumen_arrow";
 
 export function createTorchArrow(options: {
@@ -33,32 +35,32 @@ export function createTorchArrow(options: {
     } = options;
     const arrowTag = `${torchId}_arrow`;
     const selectors = createLumenSelectors(label, arrowTag);
-    const resultDefaults = buildLumenArrowDefaults({
-        customName: label,
-        customColor: color,
-    });
+    const recipeDefaults = {
+        type: "crafting_shapeless",
+        group: "lumen_arrows",
+        category: "equipment",
+        result: buildLumenArrowDefaults({
+            customName: label,
+            customColor: color
+        })
+    } as const;
     const setTorch = (faceDirection?: FaceDirection) =>
         setblock(
             Positions.HERE,
+            // Todo: Sandstone Beta 1 will have typed blockstates
             faceDirection ? `${wallTorchId}[facing=${faceDirection}]` : torchId,
             "destroy"
         );
 
     // Recipes for this arrow type
     Recipe(`${torchId}_arrow_from_torch`, {
-        type: "crafting_shapeless",
-        group: "lumen_arrows",
-        category: "equipment",
-        ingredients: ["#arrows", torchId],
-        result: resultDefaults,
+        ...recipeDefaults,
+        ingredients: ["#arrows", torchId]
     } as RecipeJSON);
 
     Recipe(`${torchId}_arrow_from_raw`, {
-        type: "crafting_shapeless",
-        group: "lumen_arrows",
-        category: "equipment",
-        ingredients: ["#arrows", ...nonArrowIngredients],
-        result: resultDefaults,
+        ...recipeDefaults,
+        ingredients: ["#arrows", ...nonArrowIngredients]
     } as RecipeJSON);
 
     MCFunction(
@@ -120,5 +122,3 @@ export function createTorchArrow(options: {
         { runEvery: 2 }
     );
 }
-
-type FaceDirection = "north" | "south" | "east" | "west";

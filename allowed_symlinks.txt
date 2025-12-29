@@ -1,1 +1,0 @@
-[glob]/home/troy/Documents/Code/Personal/datapack-lumen-arrow/.sandstone/output/**

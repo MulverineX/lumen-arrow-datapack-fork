@@ -7,6 +7,7 @@ import type {
 } from "sandstone";
 import { config } from "dotenv";
 
+// Todo: When Sandstone moves to Bun this will no longer be necessary.
 // I'd prefer to use `node --env-file=.env` but it cannot work that way
 config();
 
@@ -36,7 +37,7 @@ export default {
         //  If you run 2 executes within the same function,
         //  it warns that it is trying to create multiple functions with the same name.
         //  Since it is never running this extra function I think it is safe to ignore.
-        //  Maybe this is an incomplete feature of beta Sandstone?
+        //  This is a bug in 1.0.0-beta.0 that will be fixed in beta 1.
         default: "ignore",
     },
     namespace: "lumen_arrow",
@@ -45,7 +46,7 @@ export default {
     saveOptions: {
         clientPath: process.env.DATAPACK_CLIENT_PATH,
         customFileHandler: fixLegacyPathNames,
-    },
+    }
 } as SandstoneConfig;
 
 const renamedPaths = [

@@ -3,13 +3,23 @@ import { createTorchArrow } from "./create-torch-arrow.ts";
 import * as Selectors from "./selectors.ts";
 import * as Positions from "./positions.ts";
 
-const defaultParticle = {
-    position: Positions.HERE,
-    deviation: [0.05, 0.05, 0.05] as [number, number, number],
-    speed: 0,
-    scale: 1,
-    mode: "force" as const,
-};
+const defaultParticle = [
+    // Todo: Sandstone will update the delta argument in the future
+    // Delta
+    [0.05, 0.05, 0.05] as [number, number, number],
+    // Speed
+    0,
+    // Count
+    1,
+    // Mode
+    "force"
+] as const;
+
+const defaultParticleWithPos = [
+    // Pos
+    Positions.HERE,
+    ...defaultParticle
+] as const
 
 const beyond4Blocks = Selectors.createPlayerBeyondDistanceSelector(4);
 
@@ -22,11 +32,7 @@ createTorchArrow({
     createParticle: () => {
         particle(
             "flame",
-            defaultParticle.position,
-            defaultParticle.deviation,
-            defaultParticle.speed,
-            defaultParticle.scale,
-            defaultParticle.mode,
+            ...defaultParticleWithPos,
             beyond4Blocks
         );
     },
@@ -41,11 +47,7 @@ createTorchArrow({
     createParticle: () => {
         particle(
             "soul_fire_flame",
-            defaultParticle.position,
-            defaultParticle.deviation,
-            defaultParticle.speed,
-            defaultParticle.scale,
-            defaultParticle.mode,
+            ...defaultParticleWithPos,
             beyond4Blocks
         );
     },
@@ -59,13 +61,9 @@ createTorchArrow({
     nonArrowIngredients: ["#coals", "copper_nugget"],
     createParticle: () => {
         particle(
-            // Todo: Library hasn't updated string constants yet or I'm using it incorrectly.
+            // Todo: Library hasn't updated string constants yet.
             "copper_fire_flame" as "flame",
-            defaultParticle.position,
-            defaultParticle.deviation,
-            defaultParticle.speed,
-            defaultParticle.scale,
-            defaultParticle.mode,
+            ...defaultParticleWithPos,
             beyond4Blocks
         );
     },
@@ -79,13 +77,10 @@ createTorchArrow({
     nonArrowIngredients: ["redstone"],
     createParticle: () => {
         particle(
-            // Todo: Library hasn't updated string constants yet or I'm using it incorrectly.
+            // Todo: Library hasn't updated string constants yet.
             "dust{color:[1,0,0],scale:1}" as "flame",
             ["~", "~-0.25", "~"],
-            defaultParticle.deviation,
-            defaultParticle.speed,
-            defaultParticle.scale,
-            defaultParticle.mode,
+            ...defaultParticle,
             beyond4Blocks
         );
     },
